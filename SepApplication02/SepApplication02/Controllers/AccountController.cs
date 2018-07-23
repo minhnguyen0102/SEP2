@@ -12,7 +12,7 @@ using SepApplication02.Models;
 
 namespace SepApplication02.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         public AccountController()
@@ -43,20 +43,31 @@ namespace SepApplication02.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            //    var user = await UserManager.FindAsync(model.UserName, model.Password);
+            //    if (user != null)
+            //    {
+            //        await SignInAsync(user, model.RememberMe);
+            //        return RedirectToLocal(returnUrl);
+            //    }
+            //    else
+            //    {
+            //        ModelState.AddModelError("", "Invalid username or password.");
+            //    }
+            //}
+            var result = new API().Login(model.UserName, model.Password);
+            if(result.Code == 0)
             {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
-                if (user != null)
-                {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }
+                Session["Email"] = model.UserName;
+                Session["ID"] = result.Data.Id;
+                Session["Secret"] = result.Data.Secret;
+                return RedirectToLocal(returnUrl);
             }
-
+            else
+            {
+                ModelState.AddModelError("", "Invalid username or password.");
+            }
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -289,6 +300,9 @@ namespace SepApplication02.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Session["Email"] = null;
+            Session["Secret"] = null;
+            Session["ID"] = null;
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
