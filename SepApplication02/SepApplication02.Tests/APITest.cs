@@ -23,5 +23,16 @@ namespace SepApplication02.Tests
             var result = api.GetCourses("ND");
             Assert.AreEqual(3, result.Code);
         }
+
+        [TestMethod]
+        public void TestGetStudent()
+        {
+            var api = new API();
+            var result0 = api.GetStudents("T152212");
+            var result1 = api.GetStudents("T156789");
+            Assert.AreEqual(0, result0.code);
+            Assert.AreEqual(1, result1.code);
+           
+        }
     }
 }
