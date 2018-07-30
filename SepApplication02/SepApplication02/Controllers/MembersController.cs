@@ -60,11 +60,11 @@ namespace SepApplication02.Controllers
                 //member.Code = result.Data.;
                 db.Members.Add(member);
                 db.SaveChanges();
-                return RedirectToAction("Index",new { courseId = courseId});
+                return RedirectToAction("Index");
             }
 
             ViewBag.Course_id = courseId;
-            return View(member);
+            return View();
         }
 
         // GET: /Members/Edit/5
