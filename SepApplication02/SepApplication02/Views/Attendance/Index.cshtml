@@ -1,0 +1,52 @@
+﻿@model List<SepApplication02.Models.Member>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Attendance</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Student' Info
+        </th>
+        <th>
+           @((ViewBag.Session as SepApplication02.Models.Session).Date.ToShortDateString());
+        </th>
+        <th></th>
+    </tr>
+    @using (Html.BeginForm("Check", "Attendance"))
+    {
+        @Html.Hidden("CourseId", ViewData["CourseId"])
+        @Html.Hidden("SessionId", ViewData["SessionId"])
+        foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Code - @item.Fullname - @item.Birthday.ToShortDateString();
+        </td>
+        <td>
+            @Html.CheckBox("C_" + @item.id, false)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+    }  
+    <tr>
+        <td>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Check" class="btn btn-default" />
+                </div>
+            </div>
+        </td>
+    </tr>
+    }
+
+</table>
