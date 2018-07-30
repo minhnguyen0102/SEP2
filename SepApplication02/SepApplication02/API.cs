@@ -33,6 +33,24 @@ namespace SepApplication02
         public string Message { get; set; }
     }
 
+    public class GetAttendanceData
+    {
+        public int ID { get; set; }
+        public DateTime date { get; set; }
+        public string info { get; set; }
+        public string student { get; set; }
+        public int checklist { get; set; }
+
+    }
+
+    public class GetAttendanceResult
+    {
+        public int Code { get; set; }
+        public GetAttendanceData[] Data { get; set; }
+        public GetAttendanceData[] attendance { get; set;}
+        public GetAttendanceData[] sessions { get; set;}
+        public string Message { get; set; }
+    }
     public class API
     {
         public LoginResult Login(string username, string password)
@@ -53,6 +71,15 @@ namespace SepApplication02
             {
                 var json = client.DownloadString("http://cntttest.vanlanguni.edu.vn:8080/CMU/SEPAPI/SEP21/" + "/GetCourses?lecturerID=" + lecturerID);
                 return JsonConvert.DeserializeObject<GetCoursesResult>(json);
+            }
+        }
+
+        public GetAttendanceResult GetAttendance(string courseID)
+        {
+            using (var client = new WebClient())
+            {
+                var json = client.DownloadString("http://cntttest.vanlanguni.edu.vn:8080/CMU/SEPAPI/SEP21/" + "/GetCourses?coureID=" + courseID);
+                return JsonConvert.DeserializeObject<GetAttendanceResult>(json);
             }
         }
     }
