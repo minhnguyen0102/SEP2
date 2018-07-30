@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<SepApplication02.Models.Session>
 
 @{
+    
     ViewBag.Title = "Index";
 }
 
 <h2>Sessions</h2>
-
+ 
 <p>
     @Html.ActionLink("Create New", "Create", new {courseId = ViewBag.CourseId })
 </p>
@@ -20,7 +21,7 @@
         <th>
             Course_Id
         </th>
-        <th></th>
+        
     </tr>
 
 @foreach (var item in Model) {
@@ -32,12 +33,14 @@
             @Html.DisplayFor(modelItem => item.Info)
         </td>
         <td>
+            
             @Html.DisplayFor(modelItem => item.Course.Code)
         </td>
+      
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.id, courseId = ViewBag.CourseId }) |
+            @Html.ActionLink("Details", "Details", new { courseId= ViewBag.CourseId, sessionId=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id, courseId = ViewBag.CourseId })
         </td>
     </tr>
 }

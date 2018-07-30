@@ -17,24 +17,17 @@ namespace SepApplication02.Controllers
         // GET: /Sessions/
         public ActionResult Index(int courseId)
         {
+            //ViewBag.DB = db;
             ViewBag.CourseId = courseId;
             var sessions = db.Sessions.Where(s => s.Course_id == courseId);
             return View(sessions.ToList());
         }
 
         // GET: /Sessions/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int courseId, int sessionId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Session session = db.Sessions.Find(id);
-            if (session == null)
-            {
-                return HttpNotFound();
-            }
-            return View(session);
+            return RedirectToAction("Index", "Attendance", new { courseId = courseId});
+            
         }
 
         // GET: /Sessions/Create
@@ -66,20 +59,12 @@ namespace SepApplication02.Controllers
         }
 
         // GET: /Sessions/Edit/5
-        public ActionResult Edit(int courseId)
+        public ActionResult Edit(int? courseId, int id)
         {
-            ViewBag.Course_id = courseId;
-            if (courseId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Session session = db.Sessions.Find(courseId);
-            if (session == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Course_id = new SelectList(db.Courses, "id", "Code", session.Course_id);
+            ViewBag.CourseId = courseId;
+            var session = db.Sessions.SingleOrDefault(s => s.id == id);
             return View(session);
+           
         }
 
         // POST: /Sessions/Edit/5
@@ -87,42 +72,36 @@ namespace SepApplication02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int courseId, Session session)
+        public ActionResult Edit(Session session)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(session).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { courseId = courseId });
+                return RedirectToAction("Index", new {courseId = session.Course_id });
             }
-            ViewBag.Course_id = courseId; 
             return View(session);
         }
 
         // GET: /Sessions/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? courseId, int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Session session = db.Sessions.Find(id);
-            if (session == null)
-            {
-                return HttpNotFound();
-            }
+            ViewBag.CourseId = courseId;
+            var session = db.Sessions.SingleOrDefault(s => s.id == id);
             return View(session);
         }
 
         // POST: /Sessions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int courseId, int id)
         {
-            Session session = db.Sessions.Find(id);
+            ViewBag.CourseId = courseId;
+            Session session = db.Sessions.SingleOrDefault(s => s.id == id);
             db.Sessions.Remove(session);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { courseId = courseId});
         }
 
         protected override void Dispose(bool disposing)
