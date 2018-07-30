@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using SepApplication02.Models;
 namespace SepApplication02.Controllers
 {
     public class HomeController : Controller
@@ -13,7 +13,22 @@ namespace SepApplication02.Controllers
             if(Session["Email"] != null)
             {
                 var result = new API().GetCourses(Session["ID"] as string);
-                return View(result.Data);
+                var db = new sepoopcsEntities();
+                for (int i = 0; i < result.Data.Length; i++ )
+                {
+                    var code = result.Data[i].Id;
+                    if (db.Courses.SingleOrDefault(c => c.Code == code) == null)
+                    {
+                        var course = new Course();
+                        course.Code = result.Data[i].Id;
+                        course.Name = result.Data[i].Name;
+                        course.Info = result.Data[i].Info;
+                        course.Lecturer = (string)Session["ID"];
+                        db.Courses.Add(course);
+                        db.SaveChanges();
+                    }
+                }
+                return RedirectToAction("Index","Courses");
             }
             return View();
         }
