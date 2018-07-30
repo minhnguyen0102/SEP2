@@ -66,6 +66,14 @@ namespace SepApplication02
         public string Firstname { get; set; }
     }
 
+    
+    public class StudentData
+    {
+        public string ID { get; set; }
+        public string Fullname { get; set; }
+        public DateTime BirthDay { get; set; }
+
+    }
     public class API
     {
         public LoginResult Login(string username, string password)

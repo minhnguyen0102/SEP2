@@ -86,6 +86,7 @@ D:\SEP2\SepApplication02\SepApplication02.Tests\bin\Debug\Microsoft.Owin.Securit
 D:\SEP2\SepApplication02\SepApplication02.Tests\obj\Debug\SepApplication02.Tests.csprojResolveAssemblyReference.cache
 D:\SEP2\SepApplication02\SepApplication02.Tests\obj\Debug\SepApplication02.Tests.dll
 D:\SEP2\SepApplication02\SepApplication02.Tests\obj\Debug\SepApplication02.Tests.pdb
+<<<<<<< HEAD
 D:\SEP\SEP2\SepApplication02\SepApplication02.Tests\bin\Debug\SepApplication02.Tests.dll.config
 D:\SEP\SEP2\SepApplication02\SepApplication02.Tests\bin\Debug\SepApplication02.Tests.dll
 D:\SEP\SEP2\SepApplication02\SepApplication02.Tests\bin\Debug\SepApplication02.Tests.pdb
@@ -130,3 +131,5 @@ D:\SEP\SEP2\SepApplication02\SepApplication02.Tests\bin\Debug\Microsoft.Owin.Sec
 D:\SEP\SEP2\SepApplication02\SepApplication02.Tests\obj\Debug\SepApplication02.Tests.csprojResolveAssemblyReference.cache
 D:\SEP\SEP2\SepApplication02\SepApplication02.Tests\obj\Debug\SepApplication02.Tests.dll
 D:\SEP\SEP2\SepApplication02\SepApplication02.Tests\obj\Debug\SepApplication02.Tests.pdb
+=======
+>>>>>>> 06b34ceba6259cb7caaab272d8037e9496110497

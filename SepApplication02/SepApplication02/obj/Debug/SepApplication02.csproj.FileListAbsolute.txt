@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\Sep02\SepApplication02\SepApplication02\bin\SepApplication02.dll.config
 D:\Sep02\SepApplication02\SepApplication02\bin\SepApplication02.dll
 D:\Sep02\SepApplication02\SepApplication02\bin\SepApplication02.pdb
@@ -163,3 +164,5 @@ D:\SEP\SEP2\SepApplication02\SepApplication02\bin\Microsoft.Owin.Security.Micros
 D:\SEP\SEP2\SepApplication02\SepApplication02\obj\Debug\SepApplication02.csprojResolveAssemblyReference.cache
 D:\SEP\SEP2\SepApplication02\SepApplication02\obj\Debug\SepApplication02.dll
 D:\SEP\SEP2\SepApplication02\SepApplication02\obj\Debug\SepApplication02.pdb
+=======
+>>>>>>> 06b34ceba6259cb7caaab272d8037e9496110497
