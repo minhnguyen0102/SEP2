@@ -22,7 +22,7 @@
             BirthDay
         </th>
         <th>
-            Code
+            Ratio
         </th>
         <th></th>
     </tr>
@@ -39,7 +39,13 @@
             @Html.DisplayFor(modelItem => item.Birthday)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Course.Code)
+            @{
+            var courseId = (int)ViewBag.CourseId;
+            var sessionsList = db.Sessions.Where(s => s.Course_id == courseId).Select(s => s.id);
+            var attendace = db.Attendances.ToList();
+            var count = attendace.Count(a => a.Member_id == item.id && sessionsList.Contains(a.Session_id));
+            }      
+            @count/ @sessionsList.Count()
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

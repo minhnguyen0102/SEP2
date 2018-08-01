@@ -62,7 +62,7 @@ namespace SepApplication02.Controllers
                 Session["Email"] = model.UserName;
                 Session["ID"] = result.Data.Id;
                 Session["Secret"] = result.Data.Secret;
-                return RedirectToLocal(returnUrl);
+                return RedirectToAction("Index","Courses");
             }
             else
             {

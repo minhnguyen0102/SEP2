@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SepApplication02.Models.Session>
 
 @{
-    
+    var db = ViewBag.DB as SepApplication02.Models.sepoopcsEntities;
     ViewBag.Title = "Index";
 }
 
@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.Info)
         </th>
         <th>
-            Course_Id
+            Ratio
         </th>
         
     </tr>
@@ -34,7 +34,12 @@
         </td>
         <td>
             
-            @Html.DisplayFor(modelItem => item.Course.Code)
+           @{
+           int courseId = (int)ViewBag.CourseId;
+           var count = db.Attendances.Count(a => a.Session_id == item.id);
+           var total = db.Members.Count(m => m.Course_id == courseId);
+           }
+           @(count)/@(total)
         </td>
       
         <td>
