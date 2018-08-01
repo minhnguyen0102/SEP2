@@ -17,7 +17,7 @@ namespace SepApplication02.Controllers
         // GET: /Sessions/
         public ActionResult Index(int courseId)
         {
-            //ViewBag.DB = db;
+            ViewBag.DB = db;
             ViewBag.CourseId = courseId;
             var sessions = db.Sessions.Where(s => s.Course_id == courseId);
             return View(sessions.ToList());
